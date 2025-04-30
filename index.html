@@ -3,15 +3,14 @@
 <head>
   <meta charset="utf-8">
 
-  <title>Cocos Creator | SpaceEscapeFlyBird</title>
+  <title>Cocos Creator | QYCreator</title>
 
   <!--http://www.html5rocks.com/en/mobile/mobifying/-->
   <meta name="viewport"
-        content="width=device-width,user-scalable=no,initial-scale=1,minimum-scale=1,maximum-scale=1,minimal-ui=true"/>
+        content="width=device-width,user-scalable=no,initial-scale=1, minimum-scale=1,maximum-scale=1"/>
 
   <!--https://developer.apple.com/library/safari/documentation/AppleApplications/Reference/SafariHTMLRef/Articles/MetaTags.html-->
   <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="format-detection" content="telephone=no">
 
@@ -26,6 +25,10 @@
   <meta name="full-screen" content="yes"/>
   <meta name="x5-fullscreen" content="true"/>
   <meta name="360-fullscreen" content="true"/>
+  
+  <!-- force screen orientation on some browser -->
+  <meta name="screen-orientation" content="portrait"/>
+  <meta name="x5-orientation" content="portrait">
 
   <!--fix fireball/issues/3568 -->
   <!--<meta name="browsermode" content="application">-->
@@ -34,31 +37,110 @@
   <!--<link rel="apple-touch-icon" href=".png" />-->
   <!--<link rel="apple-touch-icon-precomposed" href=".png" />-->
 
-  <link rel="stylesheet" type="text/css" href="style.02f4a.css"/>
+  <link rel="stylesheet" type="text/css" href="style-mobile.25fc5.css"/>
+  <link rel="icon" href="favicon.8de18.ico"/>
+
+
+
+<script src="https://sad.adsgram.ai/js/sad.min.js"></script>
+
+  <script 
+    async 
+    src="https://tganalytics.xyz/index.js" 
+    onload="initAnalytics()" 
+    type="text/javascript"
+  ></script>
+  <script>
+      function initAnalytics() {
+          // console.log("✅ Telegram Analytics SDK 已加载");
+          // window.telegramAnalytics.init({
+          //     token: 'eyJhcHBfbmFtZSI6IkRhZ291U29rb2JhbiIsImFwcF91cmwiOiJodHRwczovL3QubWUvQmVzdE9ubGluZUdhbWVCb3QiLCJhcHBfZG9tYWluIjoiaHR0cHM6Ly9saXBhbjQ3Ni5naXRodWIuaW8vU29rb2JhbkdhbWUvIn0=!rTMu+CulbxbCCsqYSoyqtivjzv4BX5bLay3NbYHVMug=', // 这里填入 "Your token for recording"
+          //     appName: 'SokobanGame', // 你的游戏名称
+          // });
+
+          if (window.telegramAnalytics) {
+            console.log("✅ Telegram Analytics SDK 已加载");
+            window.telegramAnalytics.init({
+                token: 'eyJhcHBfbmFtZSI6IkJsb2NrUHV6emxlIiwiYXBwX3VybCI6Imh0dHBzOi8vdC5tZS9CbG9ja1B1enpsZU1hc3RlckJvdCIsImFwcF9kb21haW4iOiJodHRwczovL2xpcGFuNDc2LmdpdGh1Yi5pby9mYW5na3VhaXBpbmcvIn0=!7g+pxHPd131rGdsNlTm90RMd8RvPtunjZS1gloj3Aps=', // 这里填入 "Your token for recording"
+                appName: 'BlockPuzzle', // 你的游戏名称
+            });
+        } else {
+            console.error("❌ Telegram Analytics SDK 未加载！");
+        }
+      }
+  </script>
+  
+  
+
+  <script src="https://telegram.org/js/telegram-web-app.js"></script>
+  <script>
+    if (window.Telegram?.WebApp) {
+      const tg = Telegram.WebApp;
+      tg.expand(); // 强制全屏显示
+      tg.enableClosingConfirmation(); // 防止误关闭
+      //console.log("User:", tg.initDataUnsafe.user?.id); // 获取用户信息
+
+      // 添加返回按钮
+      const backBtn = document.createElement('button');
+      backBtn.textContent = 'Back to Bot';
+      backBtn.style.position = 'fixed';
+      backBtn.style.top = '10px';
+      backBtn.style.left = '10px';
+      backBtn.style.zIndex = 9999;
+      backBtn.onclick = () => tg.close();
+      document.body.appendChild(backBtn);
+    } else {
+      alert("Please open this game inside Telegram!");
+    }
+  </script>
+
 
 </head>
 <body>
-  <div id="GameDiv" cc_exact_fit_screen="true">
-      <div id="Cocos3dGameContainer">
-        <canvas id="GameCanvas" oncontextmenu="event.preventDefault()" tabindex="99"></canvas>
-      </div>
+  <canvas id="GameCanvas" oncontextmenu="event.preventDefault()" tabindex="0"></canvas>
+  <div id="splash">
+    <div class="progress-bar stripes">
+      <span style="width: 0%"></span>
     </div>
-  
+  </div>
 
-<!-- Polyfills bundle. -->
+<script src="src/settings.1e4f1.js" charset="utf-8"></script>
 
-<script src="src/polyfills.bundle.5adbf.js" charset="utf-8"> </script>
+<script src="main.69e7b.js" charset="utf-8"></script>
 
+<script type="text/javascript">
+(function () {
+    // open web debugger console
+    if (typeof VConsole !== 'undefined') {
+        window.vConsole = new VConsole();
+    }
 
-<!-- SystemJS support. -->
-<script src="src/system.bundle.543e6.js" charset="utf-8"> </script>
+    var debug = window._CCSettings.debug;
+    var splash = document.getElementById('splash');
+    splash.style.display = 'block';
 
-<!-- Import map -->
-<script src="src/import-map.6ac5e.json" type="systemjs-importmap" charset="utf-8"> </script>
+    function loadScript (moduleName, cb) {
+      function scriptLoaded () {
+          document.body.removeChild(domScript);
+          domScript.removeEventListener('load', scriptLoaded, false);
+          cb && cb();
+      };
+      var domScript = document.createElement('script');
+      domScript.async = true;
+      domScript.src = moduleName;
+      domScript.addEventListener('load', scriptLoaded, false);
+      document.body.appendChild(domScript);
+    }
 
-<script>
-    System.import('./index.19634.js').catch(function(err) { console.error(err); })
+    loadScript(debug ? 'cocos2d-js.js' : 'cocos2d-js-min.0f046.js', function () {
+      if (CC_PHYSICS_BUILTIN || CC_PHYSICS_CANNON) {
+        loadScript(debug ? 'physics.js' : 'physics-min.js', window.boot);
+      }
+      else {
+        window.boot();
+      }
+    });
+})();
 </script>
-
 </body>
 </html>
