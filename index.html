@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
 
-  <title>Cocos Creator | sudoku</title>
+  <title>Cocos Creator | CarEscape</title>
 
   <!--http://www.html5rocks.com/en/mobile/mobifying/-->
   <meta name="viewport"
@@ -41,6 +41,7 @@
   <link rel="icon" href="favicon.8de18.ico"/>
 
 
+
   <script src="https://sad.adsgram.ai/js/sad.min.js"></script>
 
   <script 
@@ -60,8 +61,8 @@
           if (window.telegramAnalytics) {
             console.log("✅ Telegram Analytics SDK 已加载");
             window.telegramAnalytics.init({
-                token: 'eyJhcHBfbmFtZSI6IlN1ZG9rdSIsImFwcF91cmwiOiJodHRwczovL3QubWUvU3Vkb2t1Q2hhbGxlbmdlQm90IiwiYXBwX2RvbWFpbiI6Imh0dHBzOi8vbGlwYW40NzYuZ2l0aHViLmlvL3NodWR1LyJ9!cnLBDBb9ui8sIUPuvCxlObDSpsy5STJDIMhGCPKNdpk=', // 这里填入 "Your token for recording"
-                appName: 'Sudoku', // 你的游戏名称
+                token: 'eyJhcHBfbmFtZSI6IkNhckVzY2FwZSIsImFwcF91cmwiOiJodHRwczovL3QubWUvQ2FyRXNjYXBlQm90IiwiYXBwX2RvbWFpbiI6Imh0dHBzOi8vbGlwYW40NzYuZ2l0aHViLmlvL3Rlc3RUaW5nQ2hhbmcvIn0=!9/rAxHGBwSrjbur5AUbA9omG276rlXxZ4srJZsQeC7o=', // 这里填入 "Your token for recording"
+                appName: 'CarEscape', // 你的游戏名称
             });
         } else {
             console.error("❌ Telegram Analytics SDK 未加载！");
@@ -93,7 +94,8 @@
     }
   </script>
 
-  
+
+
 </head>
 <body>
   <canvas id="GameCanvas" oncontextmenu="event.preventDefault()" tabindex="0"></canvas>
@@ -103,9 +105,9 @@
     </div>
   </div>
 
-<script src="src/settings.d4711.js" charset="utf-8"></script>
+<script src="src/settings.9ebc8.js" charset="utf-8"></script>
 
-<script src="main.060b3.js" charset="utf-8"></script>
+<script src="main.a3ece.js" charset="utf-8"></script>
 
 <script type="text/javascript">
 (function () {
@@ -131,9 +133,9 @@
       document.body.appendChild(domScript);
     }
 
-    loadScript(debug ? 'cocos2d-js.js' : 'cocos2d-js-min.a1a7e.js', function () {
+    loadScript(debug ? 'cocos2d-js.js' : 'cocos2d-js-min.3ef1d.js', function () {
       if (CC_PHYSICS_BUILTIN || CC_PHYSICS_CANNON) {
-        loadScript(debug ? 'physics.js' : 'physics-min.ce5ee.js', window.boot);
+        loadScript(debug ? 'physics.js' : 'physics-min.js', window.boot);
       }
       else {
         window.boot();
